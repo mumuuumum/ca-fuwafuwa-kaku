@@ -13,6 +13,13 @@ buildscript {
     }
 }
 allprojects { 
+    configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'androidx.databinding' && details.requested.name == 'viewbinding' && details.requested.version == '7.4.0-dev') {
+                details.useVersion '7.4.0'
+            }
+        }
+    }
     repositories { 
         maven { 
             url('/opt/android-plugin')
